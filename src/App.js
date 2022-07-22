@@ -35,19 +35,21 @@ function App() {
       <Router>
         <div className="main">
           <Navbar user={user} logout={logout} />
+          <div className="mx-3">
+            <Routes>
+            // This is different from the video tutorial version
+            <Route exact path={"/restaurants"} element={<RestaurantsList />} />
+            <Route path="/restaurants/:id/review" element={<AddReview />} />
+            <Route path="/restaurants/:id" element={<Restaurant />} />
+            <Route path="/login" element={<Login />} />
+            // Catch all route
+            <Route
+              path="*"
+              element={<Navigate to="/restaurants" replace={true} />}
+            />
+          </Routes>
+          </div>
         </div>
-        <Routes>
-          // This is different from the video tutorial version
-          <Route exact path={"/restaurants"} element={<RestaurantsList />} />
-          <Route path="/restaurants/:id/review" element={<AddReview />} />
-          <Route path="/restaurants/:id" element={<Restaurant />} />
-          <Route path="/login" element={<Login />} />
-          // Catch all route
-          <Route
-            path="*"
-            element={<Navigate to="/restaurants" replace={true} />}
-          />
-        </Routes>
       </Router>
     </div>
     </AppContext.Provider>

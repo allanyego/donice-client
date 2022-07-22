@@ -82,7 +82,7 @@ export default function RestaurantsList() {
     <div>
       {/* Search bar */}
       <div className="row pb-1">
-        <div className="col-4">
+        <div className="col-sm-4 col-xs-12">
           <div className="input-group">
             <input
               type="text"
@@ -101,12 +101,12 @@ export default function RestaurantsList() {
           </div>
         </div>
 
-        <div className="col-4">
+        <div className="col-sm-4 col-xs-12">
           <div className="input-group">
             <input
               type="text"
               className="form-control"
-              placeholder="Search by name"
+              placeholder="Search by zip"
               value={searchZip}
               onChange={onZiphange}
             />
@@ -120,17 +120,17 @@ export default function RestaurantsList() {
           </div>
         </div>
 
-        <div className="col-4">
+        <div className="col-sm-4 col-xs-12">
           <div className="input-group">
-            <select onChange={onCuisineChange}>
-              {cuisines.map((cuisine) => (
-                <option value={cuisine} key={cuisine}>
+            <select onChange={onCuisineChange} className="form-control">
+              {cuisines.map((cuisine, index) => (
+                <option value={cuisine} key={index}>
                   {cuisine.substring(0, 20)}
                 </option>
               ))}
             </select>
             <button
-              className="btn btn-outline-secondary"
+              className="btn btn-outline-info"
               type="button"
               onClick={findByCuisine}
             >
@@ -148,7 +148,7 @@ export default function RestaurantsList() {
           const address = `${building} ${street} ${zipcode}`;
 
           return (
-            <div className="col-lg-4 pb-1">
+            <div className="col-lg-4 col-sm-6 pb-1">
               <div className="card">
                 <div className="card-body">
                   <h5 className="cart-title">{restaurant.name}</h5>
@@ -160,20 +160,26 @@ export default function RestaurantsList() {
                     {address}
                   </p>
 
-                  <div className="row">
+                  <div className="row justify-content-center">
+                    <div className="col-5">
+
                     <Link
                       to={`/restaurants/${restaurant._id}`}
-                      className="btn btn-primary col-lg-5 mx-1 mb-1"
+                      className="btn btn-primary"
                     >
                       View Reviews
                     </Link>
+                    </div>
+                    <div className="col-5">
+
                     <a
                       target="_blank"
                       href={"https://www.google.com/maps/place/" + address}
-                      className="btn btn-primary col-lg-5 mx-1 mb-1"
-                    >
+                      className="btn btn-secondary"
+                      >
                       View Map
                     </a>
+                      </div>
                   </div>
                 </div>
               </div>
